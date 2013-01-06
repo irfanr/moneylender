@@ -26,7 +26,7 @@ import javax.transaction.UserTransaction;
  * @author irfan
  */
 public class CustomerDaoJpa implements Serializable, CustomerDao {
-    
+
     private EntityManager em;
 
     public CustomerDaoJpa(EntityManager em) {
@@ -49,12 +49,12 @@ public class CustomerDaoJpa implements Serializable, CustomerDao {
     public void delete(Customer customer) {
         em.remove(customer);
     }
-    
+
     @Override
     public void delete(int id) {
         Customer customer = em.find(Customer.class, id);
         em.remove(customer);
-    }    
+    }
 
     @Override
     public void edit(Customer customer) {
@@ -62,13 +62,14 @@ public class CustomerDaoJpa implements Serializable, CustomerDao {
     }
 
     @Override
-    public Customer findCustomer(Integer id) {        
+    public Customer findCustomer(Integer id) {
         return em.find(Customer.class, id);
     }
 
     @Override
     public List<Customer> findCustomer() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Query query = em.createQuery("SELECT c FROM Customer c");
+        return (List<Customer>) query.getResultList();
     }
 
     @Override
@@ -80,7 +81,4 @@ public class CustomerDaoJpa implements Serializable, CustomerDao {
     public int getCustomerCount() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
-
-  
 }
