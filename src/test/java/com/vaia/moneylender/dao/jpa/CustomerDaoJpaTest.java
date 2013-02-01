@@ -59,7 +59,7 @@ public class CustomerDaoJpaTest {
     public void testCreateCustomer() {
         logger.info(" === testCreateCustomer ===");
 
-        Customer customer = new Customer();
+        customer = new Customer();
         customer.setName("Irfan");
 
         em.getTransaction().begin();
@@ -75,7 +75,7 @@ public class CustomerDaoJpaTest {
     public void testFindCustomer() {
         logger.info(" === testFindCustomer ===");
 
-        Customer customer = customerDao.find(1237);
+        customer = customerDao.find(customer.getId());
 
         logger.info("customer.getId():" + customer.getId());
         Assert.assertNotNull(customer);
@@ -86,7 +86,7 @@ public class CustomerDaoJpaTest {
     public void testUpdateCustomer() {
         logger.info(" === testUpdateCustomer ===");
 
-        Customer customer = customerDao.find(1237);
+        customer = customerDao.find(customer.getId());
         customer.setName("Romadona");
 
         em.getTransaction().begin();
@@ -102,14 +102,14 @@ public class CustomerDaoJpaTest {
     public void testDeleteCustomer() {
         logger.info(" === testDeleteCustomer ===");
 
-        Customer customer = customerDao.find(1237);
+        customer = customerDao.find(customer.getId());
 
         em.getTransaction().begin();
         int customerId = customer.getId();
         customerDao.delete(customer);
         em.getTransaction().commit();
         
-        customer = customerDao.find(1237);
+        customer = customerDao.find(customerId);
         Assert.assertNull(customer);
 
     }
