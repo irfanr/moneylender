@@ -77,9 +77,8 @@ public class CustomerDaoJpaTest {
 
         Customer customer = customerDao.find(1237);
 
-        logger.info("customer.getId():" + customers.get(0).getId());
-        this.customer = customers.get(0);
-        Assert.assertNotNull( customer );
+        logger.info("customer.getId():" + customer.getId());
+        Assert.assertNotNull(customer);
 
     }
 
