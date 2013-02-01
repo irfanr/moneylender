@@ -56,6 +56,12 @@ public class CustomerDaoJpa implements Serializable, CustomerDao {
     }
 
     @Override
+    public void delete(int id) {
+        Customer customer = em.find(Customer.class, id);
+        em.remove(customer);
+    }
+
+    @Override
     public void edit(Customer customer) {
         em.persist(customer);
     }

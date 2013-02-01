@@ -7,6 +7,7 @@ package com.vaia.moneylender.dao.jpa;
 import com.vaia.cbs.moneylender.dao.CustomerDao;
 import com.vaia.cbs.moneylender.dao.jpa.CustomerDaoJpa;
 import com.vaia.cbs.moneylender.entity.Customer;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -24,6 +25,8 @@ public class CustomerDaoJpaTest {
     private static EntityManagerFactory emf;
     private static EntityManager em;
     private static CustomerDao customerDao;
+    
+    private Customer customer = null;
 
     public CustomerDaoJpaTest() {
     }
@@ -52,7 +55,7 @@ public class CustomerDaoJpaTest {
     public void tearDownMethod() throws Exception {
     }
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void testCreateCustomer() {
         logger.info(" === testCreateCustomer ===");
 
@@ -68,18 +71,19 @@ public class CustomerDaoJpaTest {
 
     }
 
-    @Test(enabled = false)
+    @Test(dependsOnMethods={"testCreateCustomer"})
     public void testFindCustomer() {
         logger.info(" === testFindCustomer ===");
 
         Customer customer = customerDao.find(1237);
 
-        logger.info("customer.getId():" + customer.getId());
-        Assert.assertNotNull(customer);
+        logger.info("customer.getId():" + customers.get(0).getId());
+        this.customer = customers.get(0);
+        Assert.assertNotNull( customer );
 
     }
 
-    @Test(enabled = false)
+    @Test(dependsOnMethods={"testFindCustomer"})
     public void testUpdateCustomer() {
         logger.info(" === testUpdateCustomer ===");
 
@@ -95,13 +99,14 @@ public class CustomerDaoJpaTest {
 
     }
 
-    @Test(enabled = false)
+    @Test(dependsOnMethods={"testUpdateCustomer"})
     public void testDeleteCustomer() {
         logger.info(" === testDeleteCustomer ===");
 
         Customer customer = customerDao.find(1237);
 
         em.getTransaction().begin();
+        int customerId = customer.getId();
         customerDao.delete(customer);
         em.getTransaction().commit();
         
