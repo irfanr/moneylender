@@ -15,18 +15,20 @@ import java.util.List;
  */
 public interface LoanDao {
 
-    void create(Loan loan) throws RollbackFailureException, Exception;
+    int getCount();
 
-    void destroy(Integer id) throws NonexistentEntityException, RollbackFailureException, Exception;
+    void create(Loan loan);
 
-    void edit(Loan loan) throws NonexistentEntityException, RollbackFailureException, Exception;
+    Loan find(Integer id);
 
-    Loan findLoan(Integer id);
+    void edit(Loan loan);
 
-    List<Loan> findLoanEntities();
+    void delete(Loan loan);
 
-    List<Loan> findLoanEntities(int maxResults, int firstResult);
+    void delete(int id);
 
-    int getLoanCount();
+    List<Loan> search();
+
+    List<Loan> search(int maxResults, int firstResult);
     
 }

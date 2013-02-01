@@ -4,32 +4,23 @@
  */
 package com.vaia.cbs.moneylender.dao.jpa;
 
-import com.vaia.cbs.moneylender.dao.CustomerDao;
+import com.vaia.cbs.moneylender.dao.LoanDao;
 import com.vaia.cbs.moneylender.dao.exceptions.NonexistentEntityException;
 import com.vaia.cbs.moneylender.dao.exceptions.RollbackFailureException;
-import com.vaia.cbs.moneylender.entity.Customer;
-import java.io.Serializable;
-import javax.persistence.Query;
-import javax.persistence.EntityNotFoundException;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import com.vaia.cbs.moneylender.entity.Loan;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.transaction.UserTransaction;
 
 /**
  *
  * @author irfan
  */
-public class CustomerDaoJpa implements Serializable, CustomerDao {
+public class LoanDaoJpa implements Serializable, LoanDao {
 
     private EntityManager em;
 
-    public CustomerDaoJpa(EntityManager em) {
+    public LoanDaoJpa(EntityManager em) {
         this.em = em;
     }
 
@@ -46,38 +37,38 @@ public class CustomerDaoJpa implements Serializable, CustomerDao {
     }
 
     @Override
-    public void create(Customer customer) {
-        em.persist(customer);
+    public void create(Loan loan) {
+        em.persist(loan);
     }
 
     @Override
-    public Customer find(Integer id) {
-        return em.find(Customer.class, id);
+    public Loan find(Integer id) {
+        return em.find(Loan.class, id);
     }
 
     @Override
-    public void edit(Customer customer) {
-        em.persist(customer);
+    public void edit(Loan loan) {
+        em.persist(loan);
     }
 
     @Override
-    public void delete(Customer customer) {
-        em.remove(customer);
+    public void delete(Loan loan) {
+        em.remove(loan);
     }
 
     @Override
     public void delete(int id) {
-        Customer customer = em.find(Customer.class, id);
-        em.remove(customer);
+        Loan loan = em.find(Loan.class, id);
+        em.remove(loan);
     }
 
     @Override
-    public List<Customer> search() {
+    public List<Loan> search() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public List<Customer> search(int maxResults, int firstResult) {
+    public List<Loan> search(int maxResults, int firstResult) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

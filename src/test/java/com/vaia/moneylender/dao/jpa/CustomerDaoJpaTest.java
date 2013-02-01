@@ -72,7 +72,7 @@ public class CustomerDaoJpaTest {
     public void testFindCustomer() {
         logger.info(" === testFindCustomer ===");
 
-        Customer customer = customerDao.findCustomer(1237);
+        Customer customer = customerDao.find(1237);
 
         logger.info("customer.getId():" + customer.getId());
         Assert.assertNotNull(customer);
@@ -83,7 +83,7 @@ public class CustomerDaoJpaTest {
     public void testUpdateCustomer() {
         logger.info(" === testUpdateCustomer ===");
 
-        Customer customer = customerDao.findCustomer(1237);
+        Customer customer = customerDao.find(1237);
         customer.setName("Romadona");
 
         em.getTransaction().begin();
@@ -99,13 +99,13 @@ public class CustomerDaoJpaTest {
     public void testDeleteCustomer() {
         logger.info(" === testDeleteCustomer ===");
 
-        Customer customer = customerDao.findCustomer(1237);
+        Customer customer = customerDao.find(1237);
 
         em.getTransaction().begin();
         customerDao.delete(customer);
         em.getTransaction().commit();
         
-        customer = customerDao.findCustomer(1237);
+        customer = customerDao.find(1237);
         Assert.assertNull(customer);
 
     }

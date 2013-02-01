@@ -15,19 +15,19 @@ import java.util.List;
  */
 public interface CustomerDao {
 
+    int getCount();
+
     void create(Customer customer);
 
-    void delete(Customer customer);
-    void delete(int id);    
+    Customer find(Integer id);
 
     void edit(Customer customer);
 
-    Customer findCustomer(Integer id);
+    void delete(Customer customer);
 
-    List<Customer> findCustomer();
+    void delete(int id);
 
-    List<Customer> findCustomer(int maxResults, int firstResult);
+    List<Customer> search();
 
-    int getCustomerCount();
-    
+    List<Customer> search(int maxResults, int firstResult);
 }
