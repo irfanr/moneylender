@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
-    <!--    <persistence-unit name="moneylenderPU" transaction-type="JTA">
-        <jta-data-source>jdbc/moneylender</jta-data-source>
-        <exclude-unlisted-classes>false</exclude-unlisted-classes>
-        <properties/>
-    </persistence-unit>-->
-    <persistence-unit name="moneylenderPU-local"
-                      transaction-type="RESOURCE_LOCAL">
+    <persistence-unit name="moneylenderPU" 
+                      transaction-type="JTA">
+<!--    <persistence-unit name="moneylenderPU"   
+                          transaction-type="RESOURCE_LOCAL">
         <class>com.vaia.cbs.moneylender.entity.Customer</class>
-        <class>com.vaia.cbs.moneylender.entity.Loan</class>
+        <class>com.vaia.cbs.moneylender.entity.Loan</class>        -->
+        <jta-data-source>jdbc/moneylender</jta-data-source>
         <properties>
             <property name="javax.persistence.jdbc.driver" 
                       value="org.postgresql.Driver"/>

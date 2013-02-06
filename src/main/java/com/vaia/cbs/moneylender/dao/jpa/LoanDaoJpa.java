@@ -8,14 +8,18 @@ import com.vaia.cbs.moneylender.dao.LoanDao;
 import com.vaia.cbs.moneylender.entity.Loan;
 import java.io.Serializable;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
  * @author irfan
  */
+@Stateless
 public class LoanDaoJpa implements Serializable, LoanDao {
 
+    @PersistenceContext
     private EntityManager em;
 
     public LoanDaoJpa(EntityManager em) {

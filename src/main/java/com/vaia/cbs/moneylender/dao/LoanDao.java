@@ -8,11 +8,13 @@ import com.vaia.cbs.moneylender.dao.exceptions.NonexistentEntityException;
 import com.vaia.cbs.moneylender.dao.exceptions.RollbackFailureException;
 import com.vaia.cbs.moneylender.entity.Loan;
 import java.util.List;
+import javax.ejb.Local;
 
 /**
  *
  * @author irfan
  */
+@Local
 public interface LoanDao {
 
     int getCount();

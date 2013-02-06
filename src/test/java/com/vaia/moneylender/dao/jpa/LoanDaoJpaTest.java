@@ -46,7 +46,7 @@ public class LoanDaoJpaTest {
 
     @BeforeClass
     public static void setUpClass() throws Exception {
-        emf = Persistence.createEntityManagerFactory("moneylenderPU-local");
+        emf = Persistence.createEntityManagerFactory("moneylenderPU");
         em = emf.createEntityManager();
         customerDao = new CustomerDaoJpa(em);
         loanDao = new LoanDaoJpa(em);

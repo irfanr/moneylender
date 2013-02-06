@@ -109,6 +109,16 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.omnifaces</groupId>
+            <artifactId>omnifaces</artifactId>
+            <version>1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.primefaces.extensions</groupId>
+            <artifactId>primefaces-extensions</artifactId>
+            <version>0.6.2</version>
+        </dependency>
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>6.0</version>
@@ -127,6 +137,7 @@
                     <target>1.6</target>
                     <compilerArguments>
                         <endorseddirs>${endorsed.dir}</endorseddirs>
+                         <proc:none/>
                     </compilerArguments>
                 </configuration>
             </plugin>

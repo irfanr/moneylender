@@ -7,29 +7,29 @@ package com.vaia.cbs.moneylender.dao.jpa;
 import com.vaia.cbs.moneylender.dao.CustomerDao;
 import com.vaia.cbs.moneylender.entity.Customer;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
  * @author irfan
  */
+@Stateless
 public class CustomerDaoJpa implements Serializable, CustomerDao {
 
+    @PersistenceContext(unitName="moneylenderPU")
     private EntityManager em;
+
+    public CustomerDaoJpa() {
+    }
 
     public CustomerDaoJpa(EntityManager em) {
         this.em = em;
     }
-
-    /**
-     * @return the entityManager
-     */
-    public EntityManager getEntityManager() {
-        return em;
-    }
-
-    @Override
+    
     public int getCount() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
@@ -62,10 +62,10 @@ public class CustomerDaoJpa implements Serializable, CustomerDao {
 
     @Override
     public List<Customer> search() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return em.createQuery("select c from Customer c").getResultList();
     }
 
-    @Override
+    
     public List<Customer> search(int maxResults, int firstResult) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
