@@ -5,8 +5,6 @@
 package com.vaia.cbs.moneylender.dao.jpa;
 
 import com.vaia.cbs.moneylender.dao.LoanDao;
-import com.vaia.cbs.moneylender.dao.exceptions.NonexistentEntityException;
-import com.vaia.cbs.moneylender.dao.exceptions.RollbackFailureException;
 import com.vaia.cbs.moneylender.entity.Loan;
 import java.io.Serializable;
 import java.util.List;

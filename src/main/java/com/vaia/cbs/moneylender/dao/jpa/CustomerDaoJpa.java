@@ -5,21 +5,10 @@
 package com.vaia.cbs.moneylender.dao.jpa;
 
 import com.vaia.cbs.moneylender.dao.CustomerDao;
-import com.vaia.cbs.moneylender.dao.exceptions.NonexistentEntityException;
-import com.vaia.cbs.moneylender.dao.exceptions.RollbackFailureException;
 import com.vaia.cbs.moneylender.entity.Customer;
 import java.io.Serializable;
-import javax.persistence.Query;
-import javax.persistence.EntityNotFoundException;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-import com.vaia.cbs.moneylender.entity.Loan;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.transaction.UserTransaction;
 
 /**
  *
