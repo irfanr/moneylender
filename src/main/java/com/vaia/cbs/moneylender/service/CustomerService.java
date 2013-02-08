@@ -41,7 +41,7 @@ public class CustomerService {
 
     
     public void deleteCustomer(Customer customer) {
-        customerDao.delete(customer);
+        customerDao.delete(customer.getId());
     }
 
     

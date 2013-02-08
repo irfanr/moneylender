@@ -46,11 +46,12 @@ public class CustomerDaoJpa implements Serializable, CustomerDao {
 
     @Override
     public void edit(Customer customer) {
-        em.persist(customer);
+        em.merge(customer);
     }
 
     @Override
     public void delete(Customer customer) {
+        em.merge(customer);
         em.remove(customer);
     }
 

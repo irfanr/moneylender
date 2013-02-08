@@ -20,7 +20,17 @@
         customer
 
         <h:form id="formCustomerTable">  
-            <p:dataTable var="customer" value="#{customerManagedBean.customers}">  
+
+            <h:panelGrid>
+                <p:commandButton id="commandButtonPrepareFormAddTop" 
+                                 value="Add Form" 
+                                 actionListener="#{customerManagedBean.prepareFormAdd()}" 
+                                 update=":formCustomerFields"/>
+            </h:panelGrid>
+
+            <p:spacer height="10" width="100%"/>
+
+            <p:dataTable id="dataTableCustomer" var="customer" value="#{customerManagedBean.customers}">  
 
                 <p:column headerText="Name">  
                     <h:outputText value="#{customer.name}" />  
@@ -31,47 +41,108 @@
                 <p:column headerText="Birth Place">  
                     <h:outputText value="#{customer.birthPlace}" />  
                 </p:column>           
-                
+
                 <p:column headerText="Date of Birth">  
                     <h:outputText value="#{customer.dob}" />  
                 </p:column>              
-                
+
                 <p:column headerText="Occupation">  
                     <h:outputText value="#{customer.occupation}" />  
-                </p:column>                 
+                </p:column>           
+
+                <p:column headerText="Action">  
+                    <p:commandButton id="editCustomer" 
+                                     title="Edit #{customer.name}"
+                                     icon="ui-icon ui-icon-pencil"
+                                     actionListener="#{customerManagedBean.prepareFormEdit(customer)}"
+                                     update="@form, :formCustomerFields"/>
+                    <p:commandButton id="deleteCustomer" 
+                                     title="Delete #{customer.name}"
+                                     icon="ui-icon ui-icon-trash"
+                                     actionListener="#{customerManagedBean.prepareDelete(customer)}"
+                                     oncomplete="confirmDialogDeleteCustomer.show()"
+                                     update="@form, :formCustomerDialog"/>
+                </p:column>                   
 
             </p:dataTable>  
+
+            <p:spacer height="10" width="100%"/>  
+
+            <h:panelGrid>
+                <p:commandButton id="commandButtonPrepareFormAddBottom" 
+                                 value="Add Form" 
+                                 actionListener="#{customerManagedBean.prepareFormAdd()}" 
+                                 update=":formCustomerFields"/>
+            </h:panelGrid>
+
         </h:form>  
 
-        <p:spacer height="25"/>
+        <p:spacer height="25" width="100%"/>
 
         <h:form id="formCustomerFields">
 
-            <p:fieldset legend="Create Customer">
+            <p:fieldset legend="#{customerManagedBean.customer.id == null?'Create Customer':'Edit Customer'}">
 
                 <h:panelGrid columns="2">
 
-                    <p:outputLabel for="inputTextCustomerName" value="Name"/>
-                    <p:inputText id="inputTextCustomerName" value="#{customerManagedBean.customer.name}"/>
+                    <p:outputLabel for="inputTextCustomerName" 
+                                   value="Name"/>
+                    <p:inputText id="inputTextCustomerName" 
+                                 value="#{customerManagedBean.customer.name}"/>
 
-                    <p:outputLabel for="inputTextareaCustomerAddress" value="Address"/>
-                    <p:inputTextarea id="inputTextareaCustomerAddress" value="#{customerManagedBean.customer.address}"/>                   
+                    <p:outputLabel for="inputTextareaCustomerAddress" 
+                                   value="Address"/>
+                    <p:inputTextarea id="inputTextareaCustomerAddress" 
+                                     value="#{customerManagedBean.customer.address}"/>                   
 
-                    <p:outputLabel for="inputTextCustomerBirthPlace" value="Birth Place"/>
-                    <p:inputText id="inputTextCustomerBirthPlace" value="#{customerManagedBean.customer.birthPlace}"/>
+                    <p:outputLabel for="inputTextCustomerBirthPlace" 
+                                   value="Birth Place"/>
+                    <p:inputText id="inputTextCustomerBirthPlace" 
+                                 value="#{customerManagedBean.customer.birthPlace}"/>
 
-                    <p:outputLabel for="calendarCustomerDob" value="Date of Birth"/>
-                    <p:calendar id="calendarCustomerDob" value="#{customerManagedBean.customer.dob}"/>  
+                    <p:outputLabel for="calendarCustomerDob" 
+                                   value="Date of Birth"/>
+                    <p:calendar id="calendarCustomerDob" 
+                                value="#{customerManagedBean.customer.dob}"/>  
 
-                    <p:outputLabel for="inputTextCustomerOccupation" value="Occupation"/>
-                    <p:inputText id="inputTextCustomerOccupation" value="#{customerManagedBean.customer.occupation}"/>
+                    <p:outputLabel for="inputTextCustomerOccupation" 
+                                   value="Occupation"/>
+                    <p:inputText id="inputTextCustomerOccupation" 
+                                 value="#{customerManagedBean.customer.occupation}"/>
 
                     <p:spacer/>
-                    <p:commandButton id="commandButtonAddCustomer" value="Add Customer" actionListener="#{customerManagedBean.addCustomer()}"/>
+                    <p:commandButton id="commandButtonAddCustomer" 
+                                     value="Add Customer" 
+                                     actionListener="#{customerManagedBean.addCustomer()}"
+                                     update="@form, :formCustomerTable"
+                                     rendered="#{customerManagedBean.customer.id == null}"/>
+                    <p:commandButton id="commandButtonEditCustomer" 
+                                     value="Edit Customer" 
+                                     actionListener="#{customerManagedBean.editCustomer()}"
+                                     update="@form, :formCustomerTable"
+                                     rendered="#{customerManagedBean.customer.id != null}"/>                    
                 </h:panelGrid>
 
             </p:fieldset>
 
+        </h:form>
+
+        <h:form id="formCustomerDialog">
+            <p:confirmDialog id="confirmDialogDeleteCustomer" 
+                             message="Delete Customer #{customerManagedBean.customer.name} ?"  
+                             header="Confirm Delete" 
+                             severity="alert" 
+                             widgetVar="confirmDialogDeleteCustomer">  
+
+                <p:commandButton id="confirm" value="Delete" 
+                                 update="@form, :formCustomerFields, :formCustomerTable"
+                                 oncomplete="confirmDialogDeleteCustomer.hide()"  
+                                 actionListener="#{customerManagedBean.deleteCustomer()}"/>  
+                <p:commandButton id="decline" value="Cancel" 
+                                 onclick="confirmDialogDeleteCustomer.hide()" 
+                                 type="button"/>   
+
+            </p:confirmDialog>     
         </h:form>
 
     </ui:define>
