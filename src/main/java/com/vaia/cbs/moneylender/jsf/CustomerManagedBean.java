@@ -24,6 +24,7 @@ public class CustomerManagedBean {
     private CustomerService customerService;
     
     private List<Customer> customers;
+    private Customer customer;
 
     /**
      * Creates a new instance of CustomerManagedBean
@@ -35,7 +36,16 @@ public class CustomerManagedBean {
     public void init(){
         
         customers = customerService.search();
+        customer = new Customer();
         
+    }
+    /*
+     *  Add Customer ActionListener
+     */
+    public void addCustomer(){
+        
+        System.out.println("Add Customer");
+        customerService.createCustomer(customer);
     }
 
     /**
@@ -50,5 +60,19 @@ public class CustomerManagedBean {
      */
     public void setCustomers(List<Customer> customers) {
         this.customers = customers;
+    }
+
+    /**
+     * @return the customer
+     */
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    /**
+     * @param customer the customer to set
+     */
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }

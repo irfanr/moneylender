@@ -19,18 +19,49 @@
 
         customer
 
-        <h:form>  
+        <h:form id="formCustomerTable">  
             <p:dataTable var="customer" value="#{customerManagedBean.customers}">  
-                
+
                 <p:column headerText="Name">  
                     <h:outputText value="#{customer.name}" />  
                 </p:column>  
                 <p:column headerText="Address">  
                     <h:outputText value="#{customer.address}" />  
                 </p:column>  
-                
+
             </p:dataTable>  
         </h:form>  
+
+        <p:spacer height="25"/>
+
+        <h:form id="formCustomerFields">
+
+            <p:fieldset legend="Create Customer">
+
+                <h:panelGrid columns="2">
+
+                    <p:outputLabel for="inputTextCustomerName" value="Name"/>
+                    <p:inputText id="inputTextCustomerName" value="#{customerManagedBean.customer.name}"/>
+
+                    <p:outputLabel for="inputTextareaCustomerAddress" value="Address"/>
+                    <p:inputTextarea id="inputTextareaCustomerAddress" value="#{customerManagedBean.customer.address}"/>                   
+
+                    <p:outputLabel for="inputTextCustomerBirthPlace" value="Birth Place"/>
+                    <p:inputText id="inputTextCustomerBirthPlace" value="#{customerManagedBean.customer.birthPlace}"/>
+
+                    <p:outputLabel for="calendarCustomerDob" value="Date of Birth"/>
+                    <p:calendar id="calendarCustomerDob" value="#{customerManagedBean.customer.dob}"/>  
+
+                    <p:outputLabel for="inputTextCustomerOccupation" value="Occupation"/>
+                    <p:inputText id="inputTextCustomerOccupation" value="#{customerManagedBean.customer.occupation}"/>
+
+                    <p:spacer/>
+                    <p:commandButton id="commandButtonAddCustomer" value="Add Customer" actionListener="#{customerManagedBean.addCustomer()}"/>
+                </h:panelGrid>
+
+            </p:fieldset>
+
+        </h:form>
 
     </ui:define>
     <ui:define name="bottom">
