@@ -19,7 +19,7 @@
 
         customer
 
-        <h:form id="formCustomerTable">  
+        <h:form>  
 
             <h:panelGrid>
                 <p:commandButton id="commandButtonPrepareFormAddTop" 
@@ -27,6 +27,10 @@
                                  actionListener="#{customerManagedBean.prepareFormAdd()}" 
                                  update=":formCustomerFields"/>
             </h:panelGrid>
+
+        </h:form>
+
+        <h:form id="formCustomerTable">  
 
             <p:spacer height="10" width="100%"/>
 
@@ -54,12 +58,12 @@
                     <p:commandButton id="editCustomer" 
                                      title="Edit #{customer.name}"
                                      icon="ui-icon ui-icon-pencil"
-                                     actionListener="#{customerManagedBean.prepareFormEdit(customer)}"
+                                     action="#{customerManagedBean.prepareFormEdit(customer)}"
                                      update="@form, :formCustomerFields"/>
                     <p:commandButton id="deleteCustomer" 
                                      title="Delete #{customer.name}"
                                      icon="ui-icon ui-icon-trash"
-                                     actionListener="#{customerManagedBean.prepareDelete(customer)}"
+                                     action="#{customerManagedBean.prepareDelete(customer)}"
                                      oncomplete="confirmDialogDeleteCustomer.show()"
                                      update="@form, :formCustomerDialog"/>
                 </p:column>                   
@@ -67,6 +71,9 @@
             </p:dataTable>  
 
             <p:spacer height="10" width="100%"/>  
+
+        </h:form>  
+        <h:form>
 
             <h:panelGrid>
                 <p:commandButton id="commandButtonPrepareFormAddBottom" 
