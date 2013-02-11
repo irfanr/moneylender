@@ -6,10 +6,10 @@ package com.vaia.cbs.moneylender.service;
 
 import com.vaia.cbs.moneylender.dao.LoanDao;
 import com.vaia.cbs.moneylender.entity.Loan;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
 
 /**
  *
@@ -17,7 +17,7 @@ import javax.persistence.EntityManager;
  */
 @Stateless
 public class LoanService {
-    
+
     @EJB
     LoanDao loanDao;
 
@@ -38,7 +38,7 @@ public class LoanService {
     }
 
     public void deleteLoan(Loan loan) {
-        loanDao.delete(loan);
+        loanDao.delete(loan.getId());
     }
 
     public void deleteLoan(int id) {
@@ -46,6 +46,7 @@ public class LoanService {
     }
 
     public List<Loan> searchLoan() {
+        //        return new ArrayList<Loan>();
         return loanDao.search();
     }
 

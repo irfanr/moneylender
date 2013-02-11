@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pe="http://primefaces.org/ui/extensions"
+                xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+    <ui:define name="top">
+        top
+    </ui:define>
+
+    <ui:define name="menuBar">
+        menuBar
+    </ui:define>
+
+    <ui:define name="content">
+
+        loan
+
+        <h:form>  
+
+            <h:panelGrid>
+                <p:commandButton id="commandButtonPrepareFormAddTop" 
+                                 value="Add Form" 
+                                 actionListener="#{loanManagedBean.prepareFormAdd()}" 
+                                 update=":formLoanFields"/>
+            </h:panelGrid>
+
+        </h:form>
+
+        <h:form id="formLoanTable">  
+
+            <p:spacer height="10" width="100%"/>
+
+            <p:dataTable id="dataTableLoan" var="loan" value="#{loanManagedBean.loans}">  
+
+                <p:column headerText="Customer Name">  
+                    <h:outputText value="#{loan.customer.name}" />  
+                </p:column>  
+                <p:column headerText="Amount">  
+                    <h:outputText value="#{loan.amount}" />  
+                </p:column>       
+
+                <p:column headerText="Action">  
+                    <p:commandButton id="editLoan" 
+                                     title="Edit #{loan.customer.name}"
+                                     icon="ui-icon ui-icon-pencil"
+                                     action="#{loanManagedBean.prepareFormEdit(loan)}"
+                                     update="@form, :formLoanFields"/>
+                    <p:commandButton id="deleteLoan" 
+                                     title="Delete #{loan.customer.name}"
+                                     icon="ui-icon ui-icon-trash"
+                                     action="#{loanManagedBean.prepareDelete(loan)}"
+                                     oncomplete="confirmDialogDeleteLoan.show()"
+                                     update="@form, :formLoanDialog"/>
+                </p:column>                   
+
+            </p:dataTable>  
+
+            <p:spacer height="10" width="100%"/>  
+
+        </h:form>  
+        <h:form>
+
+            <h:panelGrid>
+                <p:commandButton id="commandButtonPrepareFormAddBottom" 
+                                 value="Add Form" 
+                                 actionListener="#{loanManagedBean.prepareFormAdd()}" 
+                                 update=":formLoanFields"/>
+            </h:panelGrid>
+
+        </h:form>  
+
+        <p:spacer height="25" width="100%"/>
+
+        <h:form id="formLoanFields">
+
+            <p:fieldset legend="#{loanManagedBean.formLegendTitle}">
+
+                <h:panelGrid columns="2">
+
+                    <p:outputLabel for="inputTextLoanAmount" 
+                                   value="Amount"/>
+                    <p:inputText id="inputTextLoanAmount" 
+                                 value="#{loanManagedBean.loan.amount}"/>
+
+                    <p:spacer/>
+                    <p:commandButton id="commandButtonAddLoan" 
+                                     value="Add Loan" 
+                                     actionListener="#{loanManagedBean.addLoan()}"
+                                     update="@form, :formLoanTable"
+                                     rendered="#{loanManagedBean.loan.id == null}"/>
+                    <p:commandButton id="commandButtonEditLoan" 
+                                     value="Edit Loan" 
+                                     actionListener="#{loanManagedBean.editLoan()}"
+                                     update="@form, :formLoanTable"
+                                     rendered="#{loanManagedBean.loan.id != null}"/>                    
+                </h:panelGrid>
+
+            </p:fieldset>
+
+        </h:form>
+
+        <h:form id="formLoanDialog">
+            <p:confirmDialog id="confirmDialogDeleteLoan" 
+                             message="Delete Loan #{loanManagedBean.loan.customer.name} ?"  
+                             header="Confirm Delete" 
+                             severity="alert" 
+                             widgetVar="confirmDialogDeleteLoan">  
+
+                <p:commandButton id="confirm" value="Delete" 
+                                 update="@form, :formLoanFields, :formLoanTable"
+                                 oncomplete="confirmDialogDeleteLoan.hide()"  
+                                 actionListener="#{loanManagedBean.deleteLoan()}"/>  
+                <p:commandButton id="decline" value="Cancel" 
+                                 onclick="confirmDialogDeleteLoan.hide()" 
+                                 type="button"/>   
+
+            </p:confirmDialog>     
+        </h:form>
+
+    </ui:define>
+    <ui:define name="bottom">
+        bottom
+    </ui:define>
+
+</ui:composition>

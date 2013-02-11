@@ -19,8 +19,11 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class LoanDaoJpa implements Serializable, LoanDao {
 
-    @PersistenceContext
+    @PersistenceContext(unitName = "moneylenderPU")
     private EntityManager em;
+
+    public LoanDaoJpa() {
+    }
 
     public LoanDaoJpa(EntityManager em) {
         this.em = em;
@@ -50,11 +53,12 @@ public class LoanDaoJpa implements Serializable, LoanDao {
 
     @Override
     public void edit(Loan loan) {
-        em.persist(loan);
+        em.merge(loan);
     }
 
     @Override
     public void delete(Loan loan) {
+        em.merge(loan);
         em.remove(loan);
     }
 
@@ -66,7 +70,7 @@ public class LoanDaoJpa implements Serializable, LoanDao {
 
     @Override
     public List<Loan> search() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return em.createQuery("select l from Loan l").getResultList();
     }
 
     @Override

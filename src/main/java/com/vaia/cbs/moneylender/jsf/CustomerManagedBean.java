@@ -106,6 +106,11 @@ public class CustomerManagedBean implements Serializable {
 //        scrollToForm(FORM_TABLE_ID);
     }
 
+    private void scrollToForm(String componentId) {
+        // Scroll to form 
+        RequestContext.getCurrentInstance().scrollTo(componentId);
+    }
+
     /**
      * @return the customers
      */
@@ -132,10 +137,5 @@ public class CustomerManagedBean implements Serializable {
      */
     public void setCustomer(Customer customer) {
         this.customer = customer;
-    }
-
-    private void scrollToForm(String componentId) {
-        // Scroll to form 
-        RequestContext.getCurrentInstance().scrollTo(componentId);
     }
 }

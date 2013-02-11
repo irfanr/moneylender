@@ -5,9 +5,7 @@
 package com.vaia.cbs.moneylender.service;
 
 import com.vaia.cbs.moneylender.dao.CustomerDao;
-import com.vaia.cbs.moneylender.dao.jpa.CustomerDaoJpa;
 import com.vaia.cbs.moneylender.entity.Customer;
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;

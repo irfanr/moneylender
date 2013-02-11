@@ -7,7 +7,6 @@ package com.vaia.cbs.moneylender.dao.jpa;
 import com.vaia.cbs.moneylender.dao.CustomerDao;
 import com.vaia.cbs.moneylender.entity.Customer;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
