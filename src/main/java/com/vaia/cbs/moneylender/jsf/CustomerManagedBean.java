@@ -38,7 +38,7 @@ public class CustomerManagedBean implements Serializable {
     @PostConstruct
     public void init() {
 
-        customers = customerService.search();
+        customers = customerService.searchCustomer();
         customer = new Customer();
 
     }
@@ -59,7 +59,7 @@ public class CustomerManagedBean implements Serializable {
         System.out.println("Add Customer");
         customerService.createCustomer(customer);
 
-        customers = customerService.search();
+        customers = customerService.searchCustomer();
 
         prepareFormEdit(customer);
     }
@@ -80,7 +80,7 @@ public class CustomerManagedBean implements Serializable {
         System.out.println("Edit Customer");
         customerService.editCustomer(customer);
 
-        customers = customerService.search();
+        customers = customerService.searchCustomer();
 
         prepareFormEdit(customer);
     }
@@ -99,7 +99,7 @@ public class CustomerManagedBean implements Serializable {
         System.out.println("Delete Customer");
         customerService.deleteCustomer(customer);
 
-        customers = customerService.search();
+        customers = customerService.searchCustomer();
 
         prepareFormAdd();
 

@@ -50,12 +50,12 @@ public class CustomerService {
     }
 
     
-    public List<Customer> search() {
+    public List<Customer> searchCustomer() {
         return customerDao.search();
     }
 
     
-    public List<Customer> search(int maxResults, int firstResult) {
+    public List<Customer> searchCustomer(int maxResults, int firstResult) {
         return customerDao.search(maxResults, firstResult);
     }
     
