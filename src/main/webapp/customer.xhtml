@@ -34,7 +34,9 @@
 
             <p:spacer height="10" width="100%"/>
 
-            <p:dataTable id="dataTableCustomer" var="customer" value="#{customerManagedBean.customers}">  
+            <p:dataTable id="dataTableCustomer" 
+                         var="customer" 
+                         value="#{customerManagedBean.customers}">  
 
                 <p:column headerText="Name">  
                     <h:outputText value="#{customer.name}" />  
@@ -88,49 +90,73 @@
 
         <h:form id="formCustomerFields">
 
-            <p:fieldset legend="#{customerManagedBean.customer.id == null?'Create Customer':'Edit Customer'}">
+            <p:tabView id="tabView">  
+                <p:tab id="tabCustomerFields" title="Customer">  
 
-                <h:panelGrid columns="2">
+                    <p:fieldset legend="#{customerManagedBean.customer.id == null?'Create Customer':'Edit Customer'}">
 
-                    <p:outputLabel for="inputTextCustomerName" 
-                                   value="Name"/>
-                    <p:inputText id="inputTextCustomerName" 
-                                 value="#{customerManagedBean.customer.name}"/>
+                        <h:panelGrid columns="2">
 
-                    <p:outputLabel for="inputTextareaCustomerAddress" 
-                                   value="Address"/>
-                    <p:inputTextarea id="inputTextareaCustomerAddress" 
-                                     value="#{customerManagedBean.customer.address}"/>                   
+                            <p:outputLabel for="inputTextCustomerName" 
+                                           value="Name"/>
+                            <p:inputText id="inputTextCustomerName" 
+                                         value="#{customerManagedBean.customer.name}"/>
 
-                    <p:outputLabel for="inputTextCustomerBirthPlace" 
-                                   value="Birth Place"/>
-                    <p:inputText id="inputTextCustomerBirthPlace" 
-                                 value="#{customerManagedBean.customer.birthPlace}"/>
+                            <p:outputLabel for="inputTextareaCustomerAddress" 
+                                           value="Address"/>
+                            <p:inputTextarea id="inputTextareaCustomerAddress" 
+                                             value="#{customerManagedBean.customer.address}"/>                   
 
-                    <p:outputLabel for="calendarCustomerDob" 
-                                   value="Date of Birth"/>
-                    <p:calendar id="calendarCustomerDob" 
-                                value="#{customerManagedBean.customer.dob}"/>  
+                            <p:outputLabel for="inputTextCustomerBirthPlace" 
+                                           value="Birth Place"/>
+                            <p:inputText id="inputTextCustomerBirthPlace" 
+                                         value="#{customerManagedBean.customer.birthPlace}"/>
 
-                    <p:outputLabel for="inputTextCustomerOccupation" 
-                                   value="Occupation"/>
-                    <p:inputText id="inputTextCustomerOccupation" 
-                                 value="#{customerManagedBean.customer.occupation}"/>
+                            <p:outputLabel for="calendarCustomerDob" 
+                                           value="Date of Birth"/>
+                            <p:calendar id="calendarCustomerDob" 
+                                        value="#{customerManagedBean.customer.dob}"/>  
 
-                    <p:spacer/>
-                    <p:commandButton id="commandButtonAddCustomer" 
-                                     value="Add Customer" 
-                                     actionListener="#{customerManagedBean.addCustomer()}"
-                                     update="@form, :formCustomerTable"
-                                     rendered="#{customerManagedBean.customer.id == null}"/>
-                    <p:commandButton id="commandButtonEditCustomer" 
-                                     value="Edit Customer" 
-                                     actionListener="#{customerManagedBean.editCustomer()}"
-                                     update="@form, :formCustomerTable"
-                                     rendered="#{customerManagedBean.customer.id != null}"/>                    
-                </h:panelGrid>
+                            <p:outputLabel for="inputTextCustomerOccupation" 
+                                           value="Occupation"/>
+                            <p:inputText id="inputTextCustomerOccupation" 
+                                         value="#{customerManagedBean.customer.occupation}"/>
 
-            </p:fieldset>
+                            <p:spacer/>
+                            <p:commandButton id="commandButtonAddCustomer" 
+                                             value="Add Customer" 
+                                             actionListener="#{customerManagedBean.addCustomer()}"
+                                             update="@form, :formCustomerTable"
+                                             rendered="#{customerManagedBean.customer.id == null}"/>
+                            <p:commandButton id="commandButtonEditCustomer" 
+                                             value="Edit Customer" 
+                                             actionListener="#{customerManagedBean.editCustomer()}"
+                                             update="@form, :formCustomerTable"
+                                             rendered="#{customerManagedBean.customer.id != null}"/>                    
+                        </h:panelGrid>
+
+                    </p:fieldset>
+                </p:tab>
+                <p:tab id="tabLoanTable" 
+                       title="Loans"
+                       disabled="#{customerManagedBean.customer.id eq null}">  
+
+                    <p:dataTable id="dataTableLoan" 
+                                 var="loan" 
+                                 value="#{customerManagedBean.customer.loanCollection}"> 
+
+                        <p:column headerText="Customer Name">  
+                            <h:outputText value="#{loan.customer.name}" />  
+                        </p:column>  
+                        <p:column headerText="Amount">  
+                            <h:outputText value="#{loan.amount}" />  
+                        </p:column>       
+                    </p:dataTable>
+
+                </p:tab>
+            </p:tabView>
+
+
 
         </h:form>
 
