@@ -23,7 +23,7 @@
 
             <h:panelGrid>
                 <p:commandButton id="commandButtonPrepareFormAddTop" 
-                                 value="Add Form" 
+                                 value="#{msgs['addForm']}"
                                  actionListener="#{customerManagedBean.prepareFormAdd()}" 
                                  update=":formCustomerFields"/>
             </h:panelGrid>
@@ -38,21 +38,21 @@
                          var="customer" 
                          value="#{customerManagedBean.customers}">  
 
-                <p:column headerText="Name">  
+                <p:column headerText="#{msgs['customer.name']}">  
                     <h:outputText value="#{customer.name}" />  
                 </p:column>  
-                <p:column headerText="Address">  
+                <p:column headerText="#{msgs['customer.address']}">  
                     <h:outputText value="#{customer.address}" />  
                 </p:column>  
-                <p:column headerText="Birth Place">  
+                <p:column headerText="#{msgs['customer.birthPlace']}">  
                     <h:outputText value="#{customer.birthPlace}" />  
                 </p:column>           
 
-                <p:column headerText="Date of Birth">  
+                <p:column headerText="#{msgs['customer.dob']}">  
                     <h:outputText value="#{customer.dob}" />  
                 </p:column>              
 
-                <p:column headerText="Occupation">  
+                <p:column headerText="#{msgs['customer.occupation']}">  
                     <h:outputText value="#{customer.occupation}" />  
                 </p:column>           
 
@@ -98,27 +98,27 @@
                         <h:panelGrid columns="2">
 
                             <p:outputLabel for="inputTextCustomerName" 
-                                           value="Name"/>
+                                           value="#{msgs['customer.name']}"/>
                             <p:inputText id="inputTextCustomerName" 
                                          value="#{customerManagedBean.customer.name}"/>
 
                             <p:outputLabel for="inputTextareaCustomerAddress" 
-                                           value="Address"/>
+                                           value="#{msgs['customer.address']}"/>
                             <p:inputTextarea id="inputTextareaCustomerAddress" 
                                              value="#{customerManagedBean.customer.address}"/>                   
 
                             <p:outputLabel for="inputTextCustomerBirthPlace" 
-                                           value="Birth Place"/>
+                                           value="#{msgs['customer.birthPlace']}"/>
                             <p:inputText id="inputTextCustomerBirthPlace" 
                                          value="#{customerManagedBean.customer.birthPlace}"/>
 
                             <p:outputLabel for="calendarCustomerDob" 
-                                           value="Date of Birth"/>
+                                           value="#{msgs['customer.dob']}"/>
                             <p:calendar id="calendarCustomerDob" 
                                         value="#{customerManagedBean.customer.dob}"/>  
 
                             <p:outputLabel for="inputTextCustomerOccupation" 
-                                           value="Occupation"/>
+                                           value="#{msgs['customer.occupation']}"/>
                             <p:inputText id="inputTextCustomerOccupation" 
                                          value="#{customerManagedBean.customer.occupation}"/>
 
@@ -145,10 +145,10 @@
                                  var="loan" 
                                  value="#{customerManagedBean.customer.loanCollection}"> 
 
-                        <p:column headerText="Customer Name">  
+                        <p:column headerText="#{msgs['customer.name']}">  
                             <h:outputText value="#{loan.customer.name}" />  
                         </p:column>  
-                        <p:column headerText="Amount">  
+                        <p:column headerText="#{msgs['loan.amount']}">  
                             <h:outputText value="#{loan.amount}" />  
                         </p:column>       
                     </p:dataTable>
